@@ -1,6 +1,6 @@
 {
     "name": "ymm1x/xdump",
-    "description": "This variable damper provides readability and flexibility instead of var_dump()",
+    "description": "A variable damper utility provides readability and flexibility instead of var_dump()",
     "type": "library",
     "license": "MIT",
     "authors": [
