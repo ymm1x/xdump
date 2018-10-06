@@ -29,7 +29,11 @@ class Caller
      */
     public static function create(): self
     {
-        $caller = debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS, 2)[1];
+        $caller = debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS, 3);
+        // Skip if called via shorthand function
+        $caller = (strpos($caller[1]['file'], 'src/Resource/function/shorthands.php') === false)
+            ? $caller[1]
+            : $caller[2];
         $file = $caller['file'];
         $line = $caller['line'];
         $code = static::readCodeLine($file, $line);
