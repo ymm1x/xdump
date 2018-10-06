@@ -16,6 +16,7 @@
         "phpunit/phpunit": "^7.4"
     },
     "autoload": {
+        "files": [ "src/Resource/function/shorthands.php" ],
         "psr-4": {
             "Ymm1x\\XDump\\": "src"
         }
