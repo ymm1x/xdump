@@ -35,22 +35,6 @@ use Ymm1x\XDump\Utility\HtmlUtil;
             overflow: scroll;
         }
 
-        a:link {
-            color: #0000ff;
-        }
-
-        a:visited {
-            color: #000080;
-        }
-
-        a:hover {
-            color: #ff0000;
-        }
-
-        a:active {
-            color: #ff8000;
-        }
-
         div.xdump a {
             color: #ea2;
             text-decoration: underline;
