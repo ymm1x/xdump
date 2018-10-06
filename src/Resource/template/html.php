@@ -92,7 +92,7 @@ use Ymm1x\XDump\Utility\HtmlUtil;
         <?= HtmlUtil::escape($caller->getFile()) ?>:<?= HtmlUtil::escape($caller->getLine()) ?>
     </span>
     <a href="#" onclick="setClipBoard(this.getAttribute('data-value')); return false;"
-       data-value="<?= HtmlUtil::escape($caller->getFile()) ?>:<?= HtmlUtil::escape($caller->getLine()) ?>">[📎Copy]</a>
+       data-value="<?= HtmlUtil::escape(basename($caller->getFile())) ?>:<?= HtmlUtil::escape($caller->getLine()) ?>">[📎Copy]</a>
     <br>
     <span class="xdump-code">&gt; <?= HtmlUtil::escape(trim($caller->getCode() ?? '')) ?></span>
     <?php // @formatter:off ?><pre><?= $dump ?></pre><?php // @formatter:on ?>
