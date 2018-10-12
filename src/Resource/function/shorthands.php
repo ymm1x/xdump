@@ -9,14 +9,14 @@
  */
 
 if (!function_exists('d')) {
-    function d($args): void
+    function d(...$args): void
     {
-        \Ymm1x\XDump\Dumper::dump($args);
+        call_user_func_array('\Ymm1x\XDump\Dumper::dump', $args);
     }
 } else if (!function_exists('dd')) { // Retry declare
-    function dd($args): void
+    function dd(...$args): void
     {
-        \Ymm1x\XDump\Dumper::dump($args);
+        call_user_func_array('\Ymm1x\XDump\Dumper::dump', $args);
     }
 }
 
