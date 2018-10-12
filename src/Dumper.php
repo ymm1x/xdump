@@ -83,6 +83,9 @@ class Dumper
      */
     protected static function _captureDumpOfArgs(array $args): string
     {
+        if ($args === []) {
+            return 'void';
+        }
         return CaptureUtil::capture(function () use ($args) {
             foreach ($args as $arg) {
                 var_dump($arg);
