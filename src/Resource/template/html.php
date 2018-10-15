@@ -54,7 +54,7 @@ use Ymm1x\XDump\Utility\HtmlUtil;
 
         div.xdump pre {
             margin: 0;
-            padding: 0 4px
+            padding: 0 4px;
             font-size: 12px;
         }
     </style>
