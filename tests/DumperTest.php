@@ -17,12 +17,30 @@ class DumperTest extends AppTestCase
     public function test_dump_cli()
     {
         Dumper::setClient(Dumper::CLIENT_TYPE_CLI);
+
+        // Case1: Only one argument
         $actual = explode("\n", CaptureUtil::capture(function () {
             Dumper::dump('bbb');
         }));
         $this->assertContains('ymm1x/xdump/tests/DumperTest.php', $actual[0]);
         $this->assertSame('string(3) "bbb"', $actual[1]);
         $this->assertSame('', $actual[2]);
+
+        // Case2: Multiple arguments
+        $actual = explode("\n", CaptureUtil::capture(function () {
+            Dumper::dump('aaa', 'bbb');
+        }));
+        $this->assertContains('ymm1x/xdump/tests/DumperTest.php', $actual[0]);
+        $this->assertSame('string(3) "aaa"', $actual[1]);
+        $this->assertSame('string(3) "bbb"', $actual[2]);
+        $this->assertSame('', $actual[3]);
+
+        // Case3: Void
+        $actual = explode("\n", CaptureUtil::capture(function () {
+            Dumper::dump();
+        }));
+        $this->assertContains('ymm1x/xdump/tests/DumperTest.php', $actual[0]);
+        $this->assertSame('void', $actual[1]);
     }
 
     public function test_dump_html()
