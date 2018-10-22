@@ -17,7 +17,7 @@ class Caller
 {
     /** @var string File path */
     private $_file;
-    /** @var string Line number of file */
+    /** @var int Line number of file */
     private $_line;
     /** @var string Code of line */
     private $_code;
@@ -47,7 +47,7 @@ class Caller
      * @param string $line
      * @return null|string
      */
-    public static function readCodeLine(string $file, string $line): ?string
+    public static function readCodeLine(string $file, int $line): ?string
     {
         $file = @file($file);
         return $file[$line - 1] ?? null;
@@ -57,10 +57,10 @@ class Caller
      * Caller constructor.
      *
      * @param string $file
-     * @param string $line
+     * @param int $line
      * @param string $code
      */
-    public function __construct(string $file, string $line, string $code)
+    public function __construct(string $file, int $line, string $code)
     {
         $this->_file = $file;
         $this->_line = $line;
@@ -76,9 +76,9 @@ class Caller
     }
 
     /**
-     * @return string
+     * @return int
      */
-    public function getLine(): string
+    public function getLine(): int
     {
         return $this->_line;
     }
