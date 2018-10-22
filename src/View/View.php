@@ -10,6 +10,8 @@
 
 namespace Ymm1x\XDump\View;
 
+use Ymm1x\XDump\Utility\CaptureUtil;
+
 /**
  * View class has the ability to render templates.
  */
@@ -53,12 +55,12 @@ class View implements ViewInterface
      */
     public function evaluate(array $viewVars = [], array $options = []): string
     {
-        // array to local variables
-        extract($viewVars);
-        // load template on this scope
-        ob_start();
-        /** @noinspection PhpIncludeInspection */
-        include $this->_getTemplatePath();
-        return ob_get_clean();
+        return CaptureUtil::capture(function () use ($viewVars) {
+            // array to local variables
+            extract($viewVars);
+            // load template on this scope
+            /** @noinspection PhpIncludeInspection */
+            include $this->_getTemplatePath();
+        });
     }
 }
