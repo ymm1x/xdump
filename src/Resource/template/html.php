@@ -19,20 +19,31 @@ use Ymm1x\XDump\Utility\HtmlUtil;
 ?>
 <?php if (!$isScriptLoaded): ?>
     <style>
+        div.xdump-wrap {
+            font-size: 100%;
+            outline: 0;
+            margin: 0;
+            padding: 0;
+            vertical-align: baseline;
+            border: none;
+            background: transparent;
+        }
+
         div.xdump {
+            max-height: 22em;
+            overflow: scroll;
+            display: inline-block;
+            background: #393939;
             border: 2px solid #ea2;
             border-radius: 10px;
             margin: 5px;
-            padding: 5px;
-            background: #393939;
+            padding: 8px 5px;
             color: #e9e9e9;
             font-family: Consolas, Menlo, 'Liberation Mono', Courier, monospace, serif;
             font-size: 13px;
-            font-weight: 500;
+            font-weight: normal;
             text-align: left;
             line-height: 1.3;
-            max-height: 20em;
-            overflow: scroll;
         }
 
         div.xdump a {
@@ -56,6 +67,7 @@ use Ymm1x\XDump\Utility\HtmlUtil;
             margin: 0;
             padding: 0 4px;
             font-size: 12px;
+            line-height: 1.4;
         }
     </style>
     <script type="text/javascript">
@@ -71,14 +83,15 @@ use Ymm1x\XDump\Utility\HtmlUtil;
     </script>
 <?php endif ?>
 
-<div class="xdump">
-    <span class="xdump-caller">
-        <?= HtmlUtil::escape($caller->getFile()) ?>:<?= HtmlUtil::escape($caller->getLine()) ?>
-    </span>
-    <a href="#" onclick="setClipBoard(this.getAttribute('data-value')); return false;"
-       data-value="<?= HtmlUtil::escape(basename($caller->getFile())) ?>:<?= HtmlUtil::escape($caller->getLine()) ?>">[📎Copy]</a>
-    <br>
-    <span class="xdump-code">&gt; <?= HtmlUtil::escape(trim($caller->getCode() ?? '')) ?></span>
-    <?php // @formatter:off ?><pre><?= $dump ?></pre><?php // @formatter:on ?>
+<div class="xdump-wrap">
+    <div class="xdump">
+        <span class="xdump-caller">
+            <?= HtmlUtil::escape($caller->getFile()) ?>:<?= HtmlUtil::escape($caller->getLine()) ?>
+        </span>
+        <a href="#" onclick="setClipBoard(this.getAttribute('data-value')); return false;"
+           data-value="<?= HtmlUtil::escape(basename($caller->getFile())) ?>:<?= HtmlUtil::escape($caller->getLine()) ?>">[📎Copy]</a>
+        <br>
+        <span class="xdump-code">&gt; <?= HtmlUtil::escape(trim($caller->getCode() ?? '')) ?></span>
+        <?php // @formatter:off ?><pre><?= $dump ?></pre><?php // @formatter:on ?>
+    </div>
 </div>
-
