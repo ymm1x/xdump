@@ -13,10 +13,5 @@ if (!function_exists('d')) {
     {
         call_user_func_array('\Ymm1x\XDump\Dumper::dump', $args);
     }
-} else if (!function_exists('dd')) { // Retry declare
-    function dd(...$args): void
-    {
-        call_user_func_array('\Ymm1x\XDump\Dumper::dump', $args);
-    }
 }
 
