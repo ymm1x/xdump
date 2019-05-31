@@ -28,7 +28,7 @@ class View implements ViewInterface
      * View constructor.
      *
      * @param string $viewName A view filename without extension
-     * @param string|null $baseDir Optional
+     * @param string $baseDir Optional
      */
     public function __construct(string $viewName, string $baseDir = null)
     {
@@ -56,9 +56,9 @@ class View implements ViewInterface
     public function evaluate(array $viewVars = [], array $options = []): string
     {
         return CaptureUtil::capture(function () use ($viewVars) {
-            // array to local variables
-            extract($viewVars);
-            // load template on this scope
+            // import variables into the current symbol table
+            extract($viewVars, EXTR_SKIP);
+            // load template on this scope with extracted variables
             /** @noinspection PhpIncludeInspection */
             include $this->_getTemplatePath();
         });

@@ -21,8 +21,8 @@ class HtmlUtil
      * @param string $str
      * @return string
      */
-    static function escape(string $str): string
+    public static function escape(string $str): string
     {
-        return htmlspecialchars($str, ENT_QUOTES, 'UTF-8');
+        return htmlspecialchars($str, ENT_QUOTES);
     }
 }

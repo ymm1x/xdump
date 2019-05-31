@@ -36,7 +36,7 @@ class Caller
             : $caller[2];
         $file = $caller['file'];
         $line = $caller['line'];
-        $code = static::readCodeLine($file, $line);
+        $code = static::readCodeLine($file, $line) ?: '';
         return new self($file, $line, $code);
     }
 
@@ -44,13 +44,13 @@ class Caller
      * Read code on the specified line.
      *
      * @param string $file
-     * @param string $line
+     * @param int $line
      * @return null|string
      */
     public static function readCodeLine(string $file, int $line): ?string
     {
-        $file = @file($file);
-        return $file[$line - 1] ?? null;
+        $lines = @file($file);
+        return $lines[$line - 1] ?? null;
     }
 
     /**

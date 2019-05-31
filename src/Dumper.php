@@ -127,7 +127,7 @@ class Dumper
         if (static::$clientType !== null) {
             return static::$clientType;
         }
-        return (php_sapi_name() === 'cli')
+        return (PHP_SAPI === 'cli')
             ? static::CLIENT_TYPE_CLI
             : static::CLIENT_TYPE_BROWSER;
     }
