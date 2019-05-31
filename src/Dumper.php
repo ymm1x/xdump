@@ -86,7 +86,7 @@ class Dumper
         if ($args === []) {
             return 'void';
         }
-        return CaptureUtil::capture(function () use ($args) {
+        return CaptureUtil::capture(static function () use ($args) {
             foreach ($args as $arg) {
                 var_dump($arg);
             }
@@ -102,8 +102,8 @@ class Dumper
     protected static function _doubleIndent(string $str): string
     {
         return preg_replace_callback('/^\s++/m',
-            function ($m) {
-                return str_repeat(" ", strlen($m[0]) * 2);
+            static function ($m) {
+                return str_repeat(' ', strlen($m[0]) * 2);
             },
             $str
         );
