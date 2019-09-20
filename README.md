@@ -1,6 +1,6 @@
 # xdump
 
-This variable damper utility provides readability and flexibility instead of [var_dump\(\)](http://php.net/manual/function.var-dump.php).
+This variable dumper utility provides readability and flexibility instead of [var_dump\(\)](http://php.net/manual/function.var-dump.php).
 
 - Shorthand function will be declared just by installing the package.
     - Usage: `d($var1, $var2, $var3)`
