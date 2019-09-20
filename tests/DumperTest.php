@@ -22,7 +22,7 @@ class DumperTest extends AppTestCase
         $actual = explode("\n", CaptureUtil::capture(function () {
             Dumper::dump('bbb');
         }));
-        $this->assertContains('ymm1x/xdump/tests/DumperTest.php', $actual[0]);
+        $this->assertContains('tests/DumperTest.php', $actual[0]);
         $this->assertSame('string(3) "bbb"', $actual[1]);
         $this->assertSame('', $actual[2]);
 
@@ -30,7 +30,7 @@ class DumperTest extends AppTestCase
         $actual = explode("\n", CaptureUtil::capture(function () {
             Dumper::dump('aaa', 'bbb');
         }));
-        $this->assertContains('ymm1x/xdump/tests/DumperTest.php', $actual[0]);
+        $this->assertContains('tests/DumperTest.php', $actual[0]);
         $this->assertSame('string(3) "aaa"', $actual[1]);
         $this->assertSame('string(3) "bbb"', $actual[2]);
         $this->assertSame('', $actual[3]);
@@ -39,7 +39,7 @@ class DumperTest extends AppTestCase
         $actual = explode("\n", CaptureUtil::capture(function () {
             Dumper::dump();
         }));
-        $this->assertContains('ymm1x/xdump/tests/DumperTest.php', $actual[0]);
+        $this->assertContains('tests/DumperTest.php', $actual[0]);
         $this->assertSame('void', $actual[1]);
     }
 
@@ -47,15 +47,25 @@ class DumperTest extends AppTestCase
     {
         Dumper::setClient(Dumper::CLIENT_TYPE_BROWSER);
         $actual = explode("\n", CaptureUtil::capture(function () {
-            Dumper::dump('bbb');
+            Dumper::dump('aaa', ['bbb', 'ccc']);
         }));
         $this->assertSame('<style>', trim($actual[0]));
 
         // Reading css and js is done only for the first time
         Dumper::setClient(Dumper::CLIENT_TYPE_BROWSER);
         $actual = explode("\n", CaptureUtil::capture(function () {
-            Dumper::dump('bbb');
+            Dumper::dump('aaa', ['bbb', 'ccc']);
         }));
         $this->assertNotSame('<style>', trim($actual[0]));
+    }
+
+    public function test_dump_auto()
+    {
+        $actual = explode("\n", CaptureUtil::capture(function () {
+            Dumper::dump('bbb');
+        }));
+        $this->assertContains('tests/DumperTest.php', $actual[0]);
+        $this->assertSame('string(3) "bbb"', $actual[1]);
+        $this->assertSame('', $actual[2]);
     }
 }
