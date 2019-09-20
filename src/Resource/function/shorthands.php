@@ -17,6 +17,6 @@ use Ymm1x\XDump\Dumper;
 if (!function_exists('d')) {
     function d(...$args): void
     {
-        call_user_func_array('\Ymm1x\XDump\Dumper::dump', $args);
+        Dumper::dump(...$args);
     }
 }
