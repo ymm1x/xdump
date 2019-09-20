@@ -8,10 +8,15 @@
  * file that was distributed with this source code.
  */
 
+use Ymm1x\XDump\Dumper;
+
+// MEMO:
+// This script will autoload according to composer.json settings.
+
+// Declare global shorthand function.
 if (!function_exists('d')) {
     function d(...$args): void
     {
         call_user_func_array('\Ymm1x\XDump\Dumper::dump', $args);
     }
 }
-

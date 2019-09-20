@@ -36,7 +36,7 @@ class Dumper
      */
     public static function dump(...$args): void
     {
-        // Capture var_dump() of all arguments
+        // Capture var_dump() results as string
         $dump = static::_doubleIndent(
             static::_captureDumpOfArgs($args)
         );
@@ -76,7 +76,7 @@ class Dumper
     }
 
     /**
-     * Capture dumped string of all arguments.
+     * Capture var_dump() results as string.
      *
      * @param array $args
      * @return string
